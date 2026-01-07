@@ -4,16 +4,12 @@ import { NavLink, Link } from "react-router-dom";
 export default function NavBar() {
   const [open, setOpen] = useState(false);
 
-  const base =
-    "px-3 py-2 rounded-lg text-sm font-medium transition-colors";
-  const active =
-    "text-slate-950 bg-white";
-  const inactive =
-    "text-white/80 hover:text-white hover:bg-white/10";
+  const base = "px-3 py-2 rounded-lg text-sm font-medium transition-colors";
+  const active = "text-slate-950 bg-white";
+  const inactive = "text-white/80 hover:text-white hover:bg-white/10";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 h-14 shadow-lg shadow-black/10
-     bg-slate-700/80 backdrop-blur border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 h-14 shadow-lg shadow-black/10 bg-slate-700/80 backdrop-blur border-b border-white/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="relative flex h-14 items-center justify-between">
           <Link
@@ -34,6 +30,25 @@ export default function NavBar() {
             >
               Home
             </NavLink>
+
+            <NavLink
+              to="/projects"
+              className={({ isActive }) =>
+                `${base} ${isActive ? active : inactive}`
+              }
+            >
+              Projects
+            </NavLink>
+
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `${base} ${isActive ? active : inactive}`
+              }
+            >
+              About
+            </NavLink>
+
             <NavLink
               to="/contact"
               className={({ isActive }) =>
@@ -76,8 +91,10 @@ export default function NavBar() {
           </button>
 
           <div
-            className={`absolute right-0 top-14 w-44 rounded-xl border border-white/10 bg-slate-950/95 backdrop-blur shadow-lg transition-all md:hidden ${
-              open ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-2"
+            className={`absolute right-0 top-14 w-48 rounded-xl border border-white/10 bg-slate-950/95 backdrop-blur shadow-lg transition-all md:hidden ${
+              open
+                ? "opacity-100 translate-y-0"
+                : "pointer-events-none opacity-0 -translate-y-2"
             }`}
           >
             <div className="flex flex-col gap-1 p-2">
@@ -90,6 +107,26 @@ export default function NavBar() {
                 }
               >
                 Home
+              </NavLink>
+
+              <NavLink
+                to="/projects"
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `${base} ${isActive ? active : inactive}`
+                }
+              >
+                Projects
+              </NavLink>
+
+              <NavLink
+                to="/about"
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `${base} ${isActive ? active : inactive}`
+                }
+              >
+                About
               </NavLink>
 
               <NavLink
